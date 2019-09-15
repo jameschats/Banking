@@ -2,11 +2,10 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Option } from '../_models/option';
 import { PaginatedResult, User } from '../_models/pagination';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
-//import { Message } from '../_models/message';
+
 
 @Injectable({
   providedIn: 'root'
@@ -51,14 +50,6 @@ export class AuthService {
     );
   }
 
-  // emitLoggedInEvent(){
-  //   this.tUser = new User();
-  //   this.tUser.name =this.decodedToken.unique_name;
-  //   this.tUser.status=true;
-  //   console.log(this.tUser.name);
-  //   this.authService.emitChange(this.tUser);
-  //   this.onlogin.emit(true);
-  // }
 
   register(model: any) {
     return this.http.post(this.baseUrl + 'register', model);

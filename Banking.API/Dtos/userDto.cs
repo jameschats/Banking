@@ -4,6 +4,9 @@ namespace Banking.API.Dtos
     {
         public string Username { get; set; }
         public string Password { get; set; }
+
+        public string UsernameForRegister { get; set; }
+        public string PasswordForRegister { get; set; }
     
     }
 }

@@ -28,16 +28,16 @@ namespace Banking.API.Controllers
         public async Task<IActionResult> Register(UserDto userDto)
         {
             // validate request
-            userDto.Username = userDto.Username.ToLower();
-            if(await _repo.UserExists(userDto.Username))
-                return BadRequest("Email already exists");
+            userDto.UsernameForRegister = userDto.UsernameForRegister.ToLower();
+            if(await _repo.UserExists(userDto.UsernameForRegister))
+                return BadRequest("Username already exists");
 
             var userToCreate = new TblUser
             {
-                Username = userDto.Username
+                Username = userDto.UsernameForRegister
             };
 
-            var createdUser = await _repo.Register(userToCreate, userDto.Password);
+            var createdUser = await _repo.Register(userToCreate, userDto.PasswordForRegister);
             return StatusCode(201);
             
         }

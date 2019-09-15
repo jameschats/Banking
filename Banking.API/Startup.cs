@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Banking.API.Data;
 using Banking.API.Models;
+using System.Text;
 
 namespace Banking.API
 {
@@ -28,7 +29,9 @@ namespace Banking.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            string decodedCs = Encoding.UTF8.GetString(Convert.FromBase64String(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(decodedCs));
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();

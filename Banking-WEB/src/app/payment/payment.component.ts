@@ -78,13 +78,13 @@ export class PaymentComponent implements OnInit {
   }
 
   createPayment() {
-    let message = "created";
+    let message = "made successfully";
     this.loading = true;
     if (this.createPaymentForm.valid) {
       this.payment = Object.assign({}, this.createPaymentForm.value);
-      console.log(this.payment.transactionId + " before paymentservice create");
+      // console.log(this.payment.transactionId + " before paymentservice create");
       if (this.payment.transactionId !== null) {
-        message = "updated";
+        message = "altered or updated successfully";
         this.payment.transactionDate = null;
       }
       this.paymentService.createPayment(this.payment).subscribe(

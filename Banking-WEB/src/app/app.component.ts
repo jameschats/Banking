@@ -1,4 +1,3 @@
-import { Option } from './_models/option';
 import { AlertifyService } from './_services/alertify.service';
 import { Component } from '@angular/core';
 import { isNgContainer } from '@angular/compiler';
@@ -14,7 +13,6 @@ import { AuthService } from './_services/auth.service';
 })
 export class AppComponent {
   title = 'Banking-WEB';
-  options: Option[];  
   userParams: any = {};
   pagination: Pagination;
   loginStatus: any = false;

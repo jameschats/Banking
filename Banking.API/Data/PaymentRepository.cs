@@ -9,6 +9,8 @@ using Banking.API.Helpers;
 using Banking.API.Models;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.Extensions.Configuration;
+using System.Text;
 
 namespace Banking.API.Data
 {
@@ -16,9 +18,11 @@ namespace Banking.API.Data
     {
         private readonly DataContext _context;
 
-        public PaymentRepository(DataContext context)
+        public IConfiguration Configuration { get; }
+        public PaymentRepository(DataContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
 
         public async Task<PagedList<paymentDto>> GetPayments(UserParams userParams)
@@ -143,7 +147,10 @@ namespace Banking.API.Data
 
          
                 string sql = "dbo.prcGetPerformers";
-                SqlConnection conn = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=Banking;Trusted_Connection=True;");
+                string connStr = Configuration.GetConnectionString("DefaultConnection");
+                string decodedCs = Encoding.UTF8.GetString(Convert.FromBase64String(Configuration.GetConnectionString("DefaultConnection")));
+                //Server=localhost\\SQLEXPRESS;Database=Banking;Trusted_Connection=True;
+                SqlConnection conn = new SqlConnection(decodedCs);
                 SqlCommand command = new SqlCommand(sql, conn);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("@FromDate", SqlDbType.DateTime).Value = userParams.FromDate;
