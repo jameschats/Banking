@@ -1,0 +1,22 @@
+.example-form {
+    min-width: 150px;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 70%;
+  }
+
+  .example-button-width {
+    width: 27%;
+    height: 120px;
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+
+  .button{
+    width: 150px;
+    height: 100px;
+    font-size: 30px;
+  }

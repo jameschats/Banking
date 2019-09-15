@@ -1,0 +1,47 @@
+
+
+<mat-toolbar color="primary" style="height: 50px">
+    <button mat-icon-button *ngIf='loginStatus==true'>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <p class="ml-3"></p><i class="fa fa-building-o" aria-hidden="true"></i> &emsp; 
+    <a mat-button [routerLink]="'/home'" class="mr-5"><h1>Heidelsoft Bank</h1> </a>
+    <div class="ml-5 pull-right" width="300px">&emsp;&emsp;
+        
+    <small style="font-size:12px"  *ngIf='loginStatus==true'>
+       <i class="fa fa-user" aria-hidden="true"></i>  Welcome {{name | titlecase}} !</small></div>   
+    
+    <span class="menu-spacer" style="width:100%"></span>
+    <div>
+      <a mat-button [routerLink]="'/home'" *ngIf='loginStatus==true'> Home </a>
+      <a mat-button [routerLink]="'/account'" *ngIf='loginStatus==true'> Add Account </a>
+      <a mat-button [routerLink]="'/accounts'" *ngIf='loginStatus==true'> My Accounts </a>
+      <a mat-button [routerLink]="'/payment'" *ngIf='loginStatus==true'> Add Payment </a>
+      <a mat-button [routerLink]="'/payments'" *ngIf='loginStatus==true'> My Payments </a>
+      <a mat-button [routerLink]="'/performers'" *ngIf='loginStatus==true'> Performers </a>
+      
+      <a class="title-right"  mat-button *ngIf='loginStatus==false' [routerLink]="'/login'"> Login</a>
+      <a class="title-right" mat-button *ngIf='loginStatus==true' (click)="logout()"> Logout</a>
+
+    </div>
+ 
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/home'"> Home </a>
+      <a mat-list-item [routerLink]="'/account'"> Add Account </a>
+      <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>      
+      <a mat-list-item [routerLink]="'/payment'"> Add Payment </a>
+      <a mat-list-item [routerLink]="'/payments'">Payments </a>
+      <a mat-list-item [routerLink]="'/Performers'"> Performers </a>     
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+      <router-outlet ></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

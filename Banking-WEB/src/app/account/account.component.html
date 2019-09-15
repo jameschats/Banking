@@ -1,0 +1,74 @@
+<br>
+<div class="row ">
+    <div class="col-lg-1"></div>
+  <div class="col-lg-3">    
+    <p class="condensed"><a [routerLink]="['/home']">Home</a> >> Add Account</p>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-lg-4"></div>
+<div class="col-lg-4 mt-5">
+    <form [formGroup]="createAccountForm" >
+    <div class="example-header">
+        <h5 class="ml-2 p-2">Add Account</h5>
+        </div>
+    <mat-card>       
+        <div class="example-container">
+          <br>
+            <mat-form-field>
+              <input matInput required placeholder="Name" 
+              formControlName="name" autocomplete="off">
+            </mat-form-field>
+          
+            <mat-form-field>
+                <input type="number" required matInput placeholder="Monthly Credit Limit"
+                formControlName="monthlyCreditLimit"  autocomplete="off">
+              </mat-form-field>
+         
+              <mat-form-field appearance="outline" style="background-color: lightyellow">
+                  <mat-label>Account Id</mat-label>
+                  <input matInput  formControlName="accountId" style="color: green; font-size: 18px; font-style: bold; background-color: lightyellow" readonly placeholder="Placeholder">
+                  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                  <mat-hint>readonly</mat-hint>
+                </mat-form-field>
+
+              <!-- <mat-form-field>
+                  <input matInput placeholder="Account Id" readonly
+                  formControlName="accountId" autocomplete="off">
+                </mat-form-field> -->
+          
+            <!-- <mat-form-field>
+              <mat-select placeholder="Select">
+                <mat-option value="option">Option</mat-option>
+                <mat-option value="option">Option</mat-option>
+                <mat-option value="option">Option</mat-option>
+              </mat-select>
+            </mat-form-field> -->
+
+            
+          </div>
+          <br><br>
+
+          <mat-card-actions style="align-content: center">
+            <div style="align-items: center">
+              <button mat-raised-button color="primary"  style="font-size: 16px; width: 48%; height: 45px"
+                 (click)="createAccount()"   type="submit"
+                 [disabled]="!createAccountForm.valid "><i class="fa fa-save"></i>&emsp;Submit 
+                 <i
+                 class="fa fa-refresh fa-pulse ml-2"
+                 *ngIf="loading"
+               ></i> </button>
+              <button mat-raised-button color="primary" class="ml-2"  style="font-size: 16px; width: 48%;  height: 45px"
+              (click)="resetForm()"  ><i class="fa fa-undo"></i>&emsp;Reset</button>
+                        </div>
+          </mat-card-actions>
+
+    </mat-card>
+
+     <!-- <p>Form value: {{ createAccountForm.value | json }}</p>
+  <p>Form status: {{ createAccountForm.status | json }}</p> -->
+  <!-- <p>Mode: {{ this.accountService.accountMode }}</p> -->
+    </form>
+</div>
+</div>

@@ -1,0 +1,2 @@
+EF scaffold
+dotnet ef dbcontext scaffold 'Server=.\SQLEXPRESS;Database=Banking;Trusted_Connection=True' Microsoft.EntityFrameworkCore.SqlServer -c DataContext -o Models -f

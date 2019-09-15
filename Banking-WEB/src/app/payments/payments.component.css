@@ -1,0 +1,30 @@
+table{
+    width: 100%
+}
+
+.pagination-md{
+    font-size: 11px;
+    /* width: 50px; */
+  }
+
+  .table td{
+      font-size: 14px;
+  }
+  
+  .table th{
+    font-size: 14px;
+    background-color:#81c784;
+     /* #7986cb; */   
+}  
+
+.page-item.active .page-link {
+    background-color:#81c784;
+}
+
+.btnsteelblue{
+    background-color: #0288d1;
+}
+
+.condensed{
+    font-size: 12.5px;
+}

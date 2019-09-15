@@ -1,0 +1,81 @@
+<p></p>
+<div class="row ">
+    <div class="col-lg-1"></div>
+  <div class="col-lg-3">    
+    <p class="condensed"><a [routerLink]="['/home']">Home</a> >> My Payments</p>
+  </div>
+</div>
+<br>
+<br />
+<br />
+<div class="row">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+    <div class="mat-elevation-z8" style="align-content: center">
+      <table class="table table-stripped table-hover table-sm">
+        <thead>
+          
+          <th style="text-align: center; height: 40px;">TransactionId</th>
+          <th style="text-align: center;">TransactionDate</th>
+          <th style="text-align: center; height: 40px;">Account Name</th>
+          <th style="text-align: center; height: 40px;">Account Id</th>
+          <th style="text-align: center;">Amount</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <td style="text-align: center;">{{ payment.transactionId }}</td>
+            <td style="text-align: center;">
+              {{ payment.transactionDate | date: "dd/MM/yyyy hh:mm:ss a" }}
+            </td>
+            <td style="text-align: center;">{{ payment.name }}</td>
+            <td style="text-align: center;">{{ payment.accountId }}</td>
+            <td style="text-align: right; width: 200px">
+              {{ payment.amount | number: "1.2" }}
+            </td>
+            <td style="text-align: center;">
+              <button class="btn btn-secondary btn-sm " (click)='viewPayment(payment)' style="width: 80px">
+                View
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pull-right">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-lg-12 pull-right">
+            <div class="d-flex justify-content-center pagination-md">
+              <select
+                style="width: 70px"
+                class="mt-2"
+                class="form-control form-control-sm btn-outline-secondary mr-2"
+                [(ngModel)]="pagination.itemsPerPage"
+                (change)="pagesizeChanged($event)"
+              >
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+              </select>
+
+              <pagination
+                [boundaryLinks]="true"
+                [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage"
+                [(ngModel)]="pagination.currentPage"
+                [maxSize]="5"
+                class="secondary"
+                (pageChanged)="pageChanged($event)"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"
+              >
+              </pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-lg-2"></div>

@@ -1,0 +1,78 @@
+<br>
+<div class="row ">
+    <div class="col-lg-1"></div>
+  <div class="col-lg-3">    
+    <p class="condensed"><a [routerLink]="['/home']">Home</a> >> Add Payment</p>
+  </div>
+</div>
+<br>
+<div class="row">
+<div class="col-lg-4"></div>
+<div class="col-lg-4 mt-5">
+    <form [formGroup]="createPaymentForm" >
+    <div class="example-header">
+        <h5 class="ml-2 p-2">Add Payment</h5>
+        </div>
+    <mat-card>       
+        <div class="example-container">
+          <br>
+       
+          <mat-form-field>
+              <mat-select formControlName="accountId"  required placeholder="Account Name">
+              
+                <mat-option readonly
+                *ngFor="let item of Accounts"
+                [value]="item.accountId" >    
+                {{ item.name }}
+              </mat-option>
+              </mat-select>
+            </mat-form-field>             
+         
+
+            <mat-form-field>
+                <input type="number" matInput required placeholder="Amount"
+                formControlName="amount"  autocomplete="off">
+              </mat-form-field>
+
+              
+
+              <mat-form-field appearance="outline">
+                  <mat-label>Transaction Id</mat-label>
+                  <input matInput  formControlName="transactionId" readonly placeholder="Transaction Id">
+                  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                  <mat-hint>readonly</mat-hint>
+                </mat-form-field>
+         
+              <mat-form-field appearance="outline">
+                  <mat-label>Transaction Date</mat-label>
+                  <input matInput  formControlName="transactionDate" readonly placeholder="Transaction Date">
+                  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                  <mat-hint>readonly</mat-hint>
+                </mat-form-field>
+          
+            
+          </div>
+          <br>
+
+          <mat-card-actions style="align-content: center">
+            <div style="align-items: center">
+              <button mat-raised-button color="primary"  style="font-size: 16px; width: 48%; height: 45px"
+                 (click)="createPayment()"   type="submit"
+                 [disabled]="!createPaymentForm.valid "><i class="fa fa-save"></i>&emsp;Submit
+                 <i
+                 class="fa fa-refresh fa-pulse ml-2"
+                 *ngIf="loading"
+               ></i></button>
+              <button mat-raised-button color="primary" class="ml-2"  style="font-size: 16px; width: 48%;  height: 45px"
+              (click)="resetForm()"  ><i class="fa fa-undo"></i>&emsp;Reset</button>
+                        </div>
+          </mat-card-actions>
+
+    </mat-card>
+
+     <p>Form value: {{ createPaymentForm.value | json }}</p>
+  <p>Form status: {{ createPaymentForm.status | json }}</p>
+  <!-- <p>Mode: {{ this.paymentService.paymentMode }}</p> -->
+    </form>
+</div>
+</div>

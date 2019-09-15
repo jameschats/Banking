@@ -1,0 +1,26 @@
+table{
+    width: 100%
+}
+
+.pagination-md{
+    font-size: 11px;
+    /* width: 50px; */
+  }
+
+  .table td{
+      font-size: 14px;
+  }
+  
+  .table th{
+    font-size: 14px;
+    background-color: #64b5f6;
+   
+}  
+
+.btnsteelblue{
+    background-color: #0288d1;
+}
+
+.condensed{
+    font-size: 12.5px;
+}

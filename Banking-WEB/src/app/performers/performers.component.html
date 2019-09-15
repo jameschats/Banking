@@ -1,0 +1,152 @@
+<br>
+<div class="row ">
+    <div class="col-lg-1"></div>
+  <div class="col-lg-3">    
+    <p class="condensed"><a [routerLink]="['/home']">Home</a> >> Performers</p>
+  </div>
+</div>
+<div class="row">
+    <div class="col-lg-2"></div> 
+    <div class="col-lg-8 col-xs-8 col-sm-10 col-xs-8">
+        <mat-card class="example-card" style="opacity: 0.9;" >
+            <!-- <strong>Search Songs</strong>
+            <mat-card-header>
+            </mat-card-header> -->
+            <mat-card-content>
+              <form class="example-form">
+                <br>
+                  <!-- <mat-form-field class="example-full-width">
+                      <input matInput placeholder="search" autocomplete="off" value="">
+                    </mat-form-field> -->
+                    <!-- <div class="row">
+                        <div class="col-xs-12 col-12 col-md-4 form-group">
+                          <input type="text"
+                                 class="form-control"
+                                 #dp="bsDatepicker"
+                                 bsDatepicker
+                                 [bsValue]="bsvaluefrom">
+                        </div>
+                        <div class="col-xs-12 col-12 col-md-3 form-group">
+                          <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen">From Date</button>
+                        </div>
+                      </div> -->
+
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker1" placeholder="From Date"
+                        [(ngModel)]="bsvaluefrom"  [formControl]="fromDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+
+                      <mat-form-field>
+                          <input matInput [matDatepicker]="picker2" placeholder="ToDate" 
+                          [(ngModel)]="bsvalueto" [formControl]="toDate">
+                          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                          <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+
+                      
+                    <!-- Sort By Usage
+                    <mat-button-toggle-group name="fontStyle" value="desc" aria-label="Font Style">
+                        <mat-button-toggle value="asc">Asc</mat-button-toggle>
+                        <mat-button-toggle value="desc">Desc</mat-button-toggle>                    
+                      </mat-button-toggle-group> -->
+                    
+                      <button class="ml-3 p-1 mr-3 example-button-width"
+                       mat-raised-button color="primary" (click)="search()">Search</button>
+                </form>
+            </mat-card-content>
+    
+    </mat-card>
+    </div>
+    
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-lg-2"></div> 
+        <div class="col-lg-8 col-xs-8 col-sm-8 col-xs-8">
+            <br>
+            <div class="mat-elevation-z8" style="align-content: center">
+                <table class="table table-stripped table-hover table-sm">
+                  <thead>
+                    <!-- <th *ngFor="let header of option">{{header}}</th> -->
+                    <!-- <th style="text-align: center; height: 40px;">TransactionId</th>
+                    <th style="text-align: center;">TransactionDate</th> -->
+                    <th (click)=sortTable($event)  sortable-column="name"  style="text-align: center; height: 40px;">Account Name
+                      <i class="fa fa-chevron-up" *ngIf="sortColumn ==='name' && sortDirection === 'asc'"></i>
+                      <i class="fa fa-chevron-down" *ngIf="sortColumn ==='name' && sortDirection === 'desc'"></i></th>
+                    <th (click)=sortTable($event)   sortable-column="accountid" style="text-align: center; height: 40px;">
+                      Account Id
+                      <i class="fa fa-chevron-up" *ngIf="sortColumn ==='accountid' && sortDirection === 'asc'"></i>
+                      <i class="fa fa-chevron-down" *ngIf="sortColumn ==='accountid' && sortDirection === 'desc'"></i></th>
+                    <th (click)=sortTable($event)  sortable-column="amount"  style="text-align: center;">Amount
+                      <i class="fa fa-chevron-up" *ngIf="sortColumn ==='amount' && sortDirection === 'asc'"></i>
+                      <i class="fa fa-chevron-down" *ngIf="sortColumn ==='amount' && sortDirection === 'desc'"></i></th>
+                    <th (click)=sortTable($event)  sortable-column="monthlycreditlimit"  style="text-align: center;">Monthly Credit Limit
+                      <i class="fa fa-chevron-up" *ngIf="sortColumn ==='monthlycreditlimit' && sortDirection === 'asc'"></i>
+                      <i class="fa fa-chevron-down" *ngIf="sortColumn ==='monthlycreditlimit' && sortDirection === 'desc'"></i></th>
+                    <th (click)=sortTable($event)   sortable-column="usage" style="text-align: center;">Usage
+                        <i class="fa fa-chevron-up" *ngIf="sortColumn ==='usage' && sortDirection === 'asc'"></i>
+                        <i class="fa fa-chevron-down" *ngIf="sortColumn ==='usage' && sortDirection === 'desc'"></i></th>
+                    <!-- <th></th> -->
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let payment of payments">
+                      <!-- <td style="text-align: center;">{{ payment.transactionId }}</td>
+                      <td style="text-align: center;">
+                        {{ payment.transactionDate | date: "dd/MM/yyyy hh:mm:ss a" }}
+                      </td> -->
+                      <td style="text-align: center;">{{ payment.name }}</td>
+                      <td style="text-align: center;">{{ payment.accountId }}</td>
+                      <td style="text-align: right; width: 230px">
+                        {{ payment.amount | number: "1.2" }}
+                      </td>
+                      <td style="text-align: right;">{{ payment.monthlyCreditLimit | number : '1.2-2'}}</td>
+                      <td style="text-align: center;width: 170px">{{ payment.usage | number : '1.2-2'}}</td>
+                      <!-- <td style="text-align: center;">
+                        <button class="btn btn-secondary btn-sm " (click)='viewPayment(payment)' style="width: 80px">
+                          View
+                        </button>
+                      </td> -->
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="pull-right">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 pull-right">
+                      <div class="d-flex justify-content-center pagination-md">
+                        <select
+                          style="width: 70px"
+                          class="mt-2"
+                          class="form-control form-control-sm btn-outline-secondary mr-2"
+                          [(ngModel)]="pagination.itemsPerPage"
+                          (change)="pagesizeChanged($event)"
+                        >
+                          <option>5</option>
+                          <option>10</option>
+                          <option>20</option>
+                        </select>
+          
+                        <pagination
+                          [boundaryLinks]="true"
+                          [totalItems]="pagination.totalItems"
+                          [itemsPerPage]="pagination.itemsPerPage"
+                          [(ngModel)]="pagination.currentPage"
+                          [maxSize]="5"
+                          class="secondary"
+                          (pageChanged)="pageChanged($event)"
+                          previousText="&lsaquo;"
+                          nextText="&rsaquo;"
+                          firstText="&laquo;"
+                          lastText="&raquo;"
+                        >
+                        </pagination>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>

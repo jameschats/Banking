@@ -1,0 +1,10 @@
+a:hover,span:hover{
+    color: gold;
+    text-decoration:none;
+}
+
+.title-right {
+    flex: 1 1 auto;
+    text-align: right;
+  }
+

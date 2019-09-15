@@ -1,0 +1,66 @@
+mat-form-field {
+    margin-right: 12px;
+  }
+
+  .example-button-width {
+    width: 15%;
+  }
+
+  .mat-button-toggle{
+      width: 150px;
+      height: 45px;      
+  }
+
+  /* .mat-button-toggle-button{
+      padding: 2px;
+} */
+
+  table{
+    width: 100%
+}
+
+.pagination-md{
+    font-size: 11px;
+    /* width: 50px; */
+  }
+
+  .table td{
+      font-size: 14px;
+  }
+  
+  .table th{
+    font-size: 14px;
+    background-color:#81c784;
+     /* #7986cb; */   
+}  
+
+.page-item.active .page-link {
+    background-color:#81c784;
+}
+
+.btnsteelblue{
+    background-color: #0288d1;
+}
+
+.condensed{
+    font-size: 12.5px;
+}
+
+.fa-chevron-down{
+    color: brown;
+}
+
+.fa-chevron-up {
+  color: blue;
+}
+
+tr,td,tbody{
+    border: 1px;
+    border-style:ridge;
+}
+
+th {      
+    border: 1px;
+    border-style:outset;
+    /* border-style: outset; */
+  }

@@ -1,0 +1,99 @@
+<section id="showcase">
+    <div class="primary-overlay text-white">
+<div class="bg1" >
+    
+<div class="row" >
+    <div class="col-lg-3 col-sm-2 col-xs-2">
+
+      </div>
+    <div class="col-lg-4 col-xs-3 col-sm-3 col-xs-3">
+        <br>  
+        <br><br>
+        <form  #registerForm="ngForm" class="example-form">
+        <div style="background-color: #3d4780; padding: 8px; height: 45px; border-top-left-radius: 5px; border-top-right-radius: 5px">
+            <strong>New User? Sign Up</strong>
+        </div>
+      
+        <mat-card class="example-card" style="opacity: 0.9;" >       
+            <mat-card-header>                  
+            </mat-card-header>
+            <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+            <mat-card-content>
+                  
+              
+                <br><br>
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Username" name="username" required [(ngModel)]="model.username"
+                     autocomplete="off" value="">
+                  </mat-form-field> <br>
+                
+                  <mat-form-field class="example-full-width">
+                      <input matInput type="password" placeholder="Password" name="password" required
+                       [(ngModel)]="model.password" autocomplete="off" value="">
+                    </mat-form-field>
+
+                    <!-- <mat-form-field class="example-full-width">
+                        <input matInput type="password"  placeholder="Confirm Password" autocomplete="off" value="">
+                      </mat-form-field> -->
+                      <br>
+                      <br>
+            </mat-card-content>
+            <br><br><br>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" [disabled]="!registerForm.valid"  (click)="register(registerForm)">Submit</button>
+              <button mat-raised-button color="primary" (click)="reset(registerForm)" >Reset</button>
+              <br>
+           
+            </mat-card-actions>         
+             
+          </mat-card>
+        </form>
+    
+    </div>
+<div class="col-lg-1 col-sm-2 col-xs-2">
+
+</div>
+<div class="col-lg-3 col-xs-8 col-sm-6 col-xs-8">
+    <br>  
+    <br><br><br><br>
+    <form #loginForm="ngForm" class="example-form">
+    <div style="background-color: #4b3fb5; padding: 8px; height: 45px; border-top-left-radius: 5px; border-top-right-radius: 5px">
+        <strong>Login</strong>
+    </div>
+    <mat-card class="example-card" style="opacity: 0.9;" >       
+        <mat-card-header>                  
+        </mat-card-header>
+        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+        <mat-card-content>
+              
+         
+            <br>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Username" name="username" required  [(ngModel)]="model.username"
+                autocomplete="off" value="">
+              </mat-form-field> <br>
+            
+              <mat-form-field class="example-full-width">
+                  <input matInput  type="password" placeholder="Password" name="password" required
+                  [(ngModel)]="model.password"  autocomplete="off" value="">
+                </mat-form-field>
+             
+         
+         
+        </mat-card-content>
+        <br><br>
+        <mat-card-actions>
+          <button mat-raised-button color="primary"  [disabled]="!loginForm.valid"  (click)="login()">Login</button>
+          <button mat-raised-button color="primary" (click)="reset(loginForm)">Reset</button>
+          <br>
+       
+        </mat-card-actions>
+      </mat-card>
+    </form>
+</div>
+<div class="col-lg-1"></div>
+
+
+</div>
+</div></div>
+</section>
