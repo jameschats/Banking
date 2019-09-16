@@ -2,7 +2,7 @@ USE [Banking]
 GO
 
 /****** Object:  StoredProcedure [dbo].[prcGetPerformers]    Script Date: 15-09-2019 23:24:52 ******/
-DROP PROCEDURE [dbo].[prcGetPerformers]
+DROP PROCEDURE IF EXISTS [dbo].[prcGetPerformers]
 GO
 
 /****** Object:  StoredProcedure [dbo].[prcGetPerformers]    Script Date: 15-09-2019 23:24:52 ******/

@@ -141,7 +141,7 @@ namespace Banking.API.Data
 
             if (userParams.SortColumn=="undefined")
             {
-                userParams.SortColumn="amount";
+                userParams.SortColumn="usage";
                 userParams.SortDirection="desc";
             }
 

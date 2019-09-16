@@ -2,6 +2,7 @@ USE [Banking]
 GO
 
 /****** Object:  Table [dbo].[tblAccount]    Script Date: 15-09-2019 23:22:16 ******/
+IF OBJECT_ID('dbo.tblAccount', 'U') IS NOT NULL
 DROP TABLE [dbo].[tblAccount]
 GO
 
@@ -26,6 +27,7 @@ GO
 
 
 /****** Object:  Table [dbo].[tblPayment]    Script Date: 15-09-2019 23:22:36 ******/
+IF OBJECT_ID('dbo.tblPayment', 'U') IS NOT NULL
 DROP TABLE [dbo].[tblPayment]
 GO
 
@@ -52,11 +54,13 @@ GO
 USE [Banking]
 GO
 
-ALTER TABLE [dbo].[tblUser] DROP CONSTRAINT [DF_tblUser_Active]
-GO
+
 
 /****** Object:  Table [dbo].[tblUser]    Script Date: 15-09-2019 23:22:55 ******/
+IF OBJECT_ID('dbo.tblUser', 'U') IS NOT NULL
+BEGIN
 DROP TABLE [dbo].[tblUser]
+END
 GO
 
 /****** Object:  Table [dbo].[tblUser]    Script Date: 15-09-2019 23:22:55 ******/
