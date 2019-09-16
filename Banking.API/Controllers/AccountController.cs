@@ -6,6 +6,7 @@ using Banking.API.Data;
 using Banking.API.Dtos;
 using Banking.API.Helpers;
 using Banking.API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Banking.API.Controllers
 {
@@ -69,9 +70,10 @@ namespace Banking.API.Controllers
 
          }
 
+        [Authorize]
         [HttpGet("getAllAccounts")]
         public ActionResult<List<TblAccount>> getAllAccounts()
-        {
+        {          
             var entity = _repo.GetAllAccounts();
             return entity;
         }

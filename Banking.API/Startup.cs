@@ -14,6 +14,12 @@ using Microsoft.Extensions.Options;
 using Banking.API.Data;
 using Banking.API.Models;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Serilog.Events;
+using Serilog;
+using System.Net;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace Banking.API
 {
@@ -37,18 +43,51 @@ namespace Banking.API
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
+                            .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+               Log.Logger = new LoggerConfiguration()
+                  .MinimumLevel.Error()
+                  .WriteTo.RollingFile("logs/log-{Date}.txt").CreateLogger();
+
+                loggerFactory.AddDebug(LogLevel.Error).AddSerilog();
             }
             else
             {
-               // app.UseHsts();
+                Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Error()
+                .WriteTo.RollingFile("logs/log-{Date}.txt").CreateLogger();
+                 loggerFactory.AddDebug(LogLevel.Error).AddSerilog();
+
+                //global exception handler for api project for production
+                app.UseExceptionHandler(builder => {
+                    builder.Run(async context => {
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+                        var error = context.Features.Get<IExceptionHandlerFeature>();
+                        if (error != null) 
+                        {                          
+                            Log.Error(error.ToString());
+                        }
+                    });
+                });
+              //  app.UseHsts();
             }
 
            // app.UseHttpsRedirection();

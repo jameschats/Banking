@@ -5,7 +5,13 @@ import { Observable } from 'rxjs';
 import { AccountClass } from '../_models/account';
 import { PaginatedResult } from '../_models/pagination';
 import { map } from 'rxjs/operators';
-//import { Message } from '../_models/message';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Authorization': 'Bearer ' + localStorage.getItem('token')
+  })
+};  
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +22,7 @@ export class AccountService {
   stringifiedData: any;
   accountObj: any;
   accountMode:any='add';
+  
 
   constructor(private http: HttpClient) {}
 
@@ -57,7 +64,7 @@ export class AccountService {
   }
 
   getAllAccounts(){   
-      return this.http.get(this.baseUrl + 'getAllAccounts/' );
+      return this.http.get(this.baseUrl + 'getAllAccounts/' ,httpOptions);
     
   }
 
