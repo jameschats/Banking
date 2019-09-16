@@ -18,7 +18,7 @@ CREATE PROCEDURE [dbo].[prcGetPerformers](@FromDate      DATETIME,
                                  @SortColumn    VARCHAR(20), 
                                  @SortDirection VARCHAR(5)) 
 --EXEC prcGetPerformers '2019-09-10','2019-09-16', 'amount', 'desc' 
---EXEC prcGetPerformers '2019-09-10','2019-09-16', 'usage', 'desc' 
+--EXEC prcGetPerformers '2019-09-10','2019-09-15', 'usage', 'desc' 
 AS 
   BEGIN 
       DECLARE @sql AS NVARCHAR(4000) 
@@ -32,7 +32,7 @@ AS
 				  WHERE (convert(Datetime,[a].[TransactionDate]) >= ''' 
                  + CONVERT(NVARCHAR(24), @FromDate, 121) 
                  + ''')        AND (convert(Datetime,[a].[TransactionDate]) <= ''' 
-                 + CONVERT(NVARCHAR(24), @ToDate, 121) 
+                 + CONVERT(NVARCHAR(24), convert(datetime,@ToDate+' 23:59:59'), 121) 
                  + 
       ''')        GROUP BY [b].[Name], [b].[AccountId], [b].[MonthlyCreditLimit]' 
 
