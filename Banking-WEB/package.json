@@ -24,7 +24,7 @@
     "@auth0/angular-jwt": "^2.0.0",
     "alertifyjs": "^1.11.4",
     "angular-6-social-login": "^1.1.1",
-    "bootstrap": "^4.1.1",
+    "bootstrap": "^4.3.1",
     "canvasjs": "^1.8.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
